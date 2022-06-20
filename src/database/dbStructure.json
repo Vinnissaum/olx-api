@@ -1,0 +1,34 @@
+{
+  "users": {
+    "id": "",
+    "name": "",
+    "email": "",
+    "state": "",
+    "passwordHash": "",
+    "token": ""
+  },
+  "states": {
+    "id": "",
+    "name": ""
+  },
+  "categories": {
+    "id": "",
+    "name": "",
+    "slug": ""
+  },
+  "ads": {
+    "id": "",
+    "state": "",
+    "category": "",
+    "images": [
+      {"url": "", "default": "boolean"}
+    ],
+    "dateCreated": "",
+    "title": "",
+    "price": "",
+    "isPriceNegotiable": "",
+    "description": "",
+    "views": "",
+    "status": ""
+  }
+}
