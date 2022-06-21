@@ -1,6 +1,9 @@
+const State = require('../models/State');
+
 class UserController {
-  async index() {
-    return null;
+  async getStates(request, response) {
+    const states = await State.find();
+    response.json({ states });
   }
 
   async info() {

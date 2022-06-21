@@ -8,7 +8,7 @@ const AdsController = require('./app/controllers/AdsController');
 router.get('/ping', (request, response) => {
   response.json({ pong: true });
 });
-router.get('/states', UserController.index);
+router.get('/states', UserController.getStates);
 router.get('/user/me', UserController.info);
 router.put('/user/me', UserController.update);
 
