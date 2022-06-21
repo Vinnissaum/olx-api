@@ -19,7 +19,7 @@ router.get('/ad/item', AdsController.show);
 // Private routes
 router.use(Auth.private);
 router.post('/ad/add', AdsController.create);
-router.post('ad/:id', AdsController.update);
+router.post('/ad/:id', AdsController.update);
 router.get('/user/me', UserController.info);
 router.put('/user/me', UserController.update);
 

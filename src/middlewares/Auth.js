@@ -8,5 +8,5 @@ exports.private = async (request, response, next) => {
     if (user) return next();
   }
 
-  request.json({ Access: 'Permission denied' });
+  response.json({ Access: 'Permission denied' });
 };
