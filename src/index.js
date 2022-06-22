@@ -1,18 +1,10 @@
 require('dotenv').config();
 
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const routes = require('./routes');
 // const db = require('./database');
-
-mongoose.connect(process.env.DATABASE_URL);
-
-mongoose.Promise = global.Promise;
-mongoose.connection.on('error', (error) => {
-  console.log('Error:', error);
-});
 
 const app = express();
 
