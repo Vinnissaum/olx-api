@@ -1,3 +1,5 @@
+const Category = require('../models/Category');
+
 class AdsController {
   async index() {
     return null;
@@ -15,8 +17,17 @@ class AdsController {
     return null;
   }
 
-  async getCategories() {
-    return null;
+  async getCategories(request, response) {
+    const getCategories = await Category.find();
+
+    const categories = getCategories.map((category) => (
+      {
+        ...category._doc,
+        img: `${process.env.BASE}/assets/images/${category.slug}.png`,
+      }
+    ));
+
+    response.json({ categories });
   }
 }
 
