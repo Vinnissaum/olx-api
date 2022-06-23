@@ -6,6 +6,7 @@ const UserController = require('./app/controllers/UserController');
 const AdsController = require('./app/controllers/AdsController');
 const Auth = require('./middlewares/Auth');
 const AuthValidator = require('./app/validators/AuthValidator');
+const UserValidator = require('./app/validators/UserValidator');
 
 router.get('/ping', (request, response) => {
   response.json({ pong: true });
@@ -19,7 +20,7 @@ router.get('/ad/item', AdsController.show);
 
 // Private routes
 router.get('/user/me', Auth.private, UserController.info);
-router.put('/user/me', Auth.private, UserController.update);
+router.put('/user/me', UserValidator.update, Auth.private, UserController.update);
 router.post('/ad/add', Auth.private, AdsController.create);
 router.post('/ad/:id', Auth.private, AdsController.update);
 
