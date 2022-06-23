@@ -25,4 +25,17 @@ module.exports = {
       errorMessage: 'State must be specified',
     },
   }),
+  LogIn: checkSchema({
+    email: {
+      isEmail: true,
+      normalizeEmail: true,
+      errorMessage: 'This email is invalid',
+    },
+    password: {
+      isLength: {
+        options: { min: 2 },
+      },
+      errorMessage: 'Password must be at least 2 characters',
+    },
+  }),
 };

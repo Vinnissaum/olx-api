@@ -4,9 +4,11 @@ const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const routes = require('./routes');
-// const db = require('./database');
+const db = require('./database');
 
 const app = express();
+
+db.connect();
 
 app.use(cors());
 app.use(express.json());

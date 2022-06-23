@@ -5,8 +5,36 @@ const User = require('../models/User');
 const State = require('../models/State');
 
 class AuthController {
-  async logIn() {
-    return null;
+  async logIn(request, response) {
+    const errors = validationResult(request);
+
+    if (!errors.isEmpty()) {
+      return response.status(400).json({ error: errors.mapped() });
+    }
+
+    const data = matchedData(request);
+
+    const userExists = await User.findOne({
+      email: data.email,
+    });
+
+    if (!userExists) {
+      return response.status(404).json({ error: 'Incorrect email or password' });
+    }
+
+    const passwordMatch = await bcrypt.compare(data.password, userExists.passwordHash);
+
+    if (!passwordMatch) {
+      return response.status(404).json({ error: 'Incorrect email or password' });
+    }
+
+    const payload = (Date.now() + Math.random()).toString();
+    const token = await bcrypt.hash(payload, 10);
+
+    userExists.token = token;
+    await userExists.save();
+
+    response.json({ token, email: data.email });
   }
 
   async signUp(request, response) {

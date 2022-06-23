@@ -11,7 +11,7 @@ router.get('/ping', (request, response) => {
   response.json({ pong: true });
 });
 router.get('/states', UserController.getStates);
-router.post('/user/login', AuthController.logIn);
+router.post('/user/login', AuthValidator.LogIn, AuthController.logIn);
 router.post('/user/signup', AuthValidator.signUp, AuthController.signUp);
 router.get('/categories', AdsController.getCategories);
 router.get('/ad/list', AdsController.index);
