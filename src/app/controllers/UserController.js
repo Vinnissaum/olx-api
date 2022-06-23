@@ -59,7 +59,7 @@ class UserController {
 
     if (data.state) {
       if (isValidObjectId(data.state)) {
-        const stateExists = await User.findById(data.state);
+        const stateExists = await State.findById(data.state);
 
         if (!stateExists) {
           return response.status(400).json({ error: 'State does not exist' });
