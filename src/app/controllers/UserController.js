@@ -19,11 +19,12 @@ class UserController {
     const state = await State.findById(user.state);
     const ads = await Ad.find({ idUser: user._id.toString });
 
-    const adList = [];
-    Object.keys(ads).forEach(async (key) => {
-      const categoryType = await Category.findById(adList[key].category);
-
-      adList.push({ ...ads[key], category: categoryType.slug });
+    const adList = ads.map(async (ad) => {
+      const categoryType = await Category.findById(ad.category);
+      return {
+        ...ad,
+        category: categoryType.slug,
+      };
     });
 
     response.json({
